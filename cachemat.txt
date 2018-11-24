@@ -1,3 +1,5 @@
+## CacheMat is a function that creates a matrix object that can
+## cache its inverse
 
 CacheMat <- function(var1 = matrix()) {
   rslt <- NULL
@@ -10,6 +12,10 @@ CacheMat <- function(var1 = matrix()) {
   getrslt <- function() rslt
   list(set = set, get = get, setrslt = setrslt, getrslt = getrslt )
 }
+
+## CacheSol is a function that determines the inverse of the matrix
+## that is returned by CacheMat. If it has already been calculated
+## then CacheSol will get the inverse from the cache
 				
 CacheSol <- function(var1, ...) {
   rslt  <- var1$getrslt ()
