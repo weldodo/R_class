@@ -1,8 +1,8 @@
-## CacheMat is a function that creates a matrix object that can
+## MakeCacheMatrix is a function that creates a matrix object that can
 ## cache its inverse
 
-CacheMat <- function(var1 = matrix()) {
-  rslt <- NULL
+MakeCacheMatrix <- function(var1 = matrix()) {
+  rslt <- NULL ## set rslt to NULL 
   set <- function(var2) {
     var1 <<- var2
     rslt <<- NULL
@@ -13,19 +13,19 @@ CacheMat <- function(var1 = matrix()) {
   list(set = set, get = get, setrslt = setrslt, getrslt = getrslt )
 }
 
-## CacheSol is a function that determines the inverse of the matrix
+## CacheSolve is a function that determines the inverse of the matrix
 ## that is returned by CacheMat. If it has already been calculated
 ## then CacheSol will get the inverse from the cache
 				
-CacheSol <- function(var1, ...) {
+CacheSolve <- function(var1, ...) {
+## Return a the inverse of 'var1'  
   rslt  <- var1$getrslt ()
-  if(!is.null(rslt )) {
-    message("getting cached result")
+  if(!is.null(rslt )) { ## if not NULL then return cache result and message
+    message("getting cached result")  
     return(rslt )
   }
-  data <- var1$get()
+  data <- var1$get() ## 
   rslt  <- solve(data, ...)
-  var1$setrslt (rslt )
+  var1$setrslt(rslt )
   rslt 
 }
-		
